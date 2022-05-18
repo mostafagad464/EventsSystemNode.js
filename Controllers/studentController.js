@@ -40,6 +40,10 @@ module.exports.createStudent=(request,response,next)=>
     let student=new Student({
                                 _id:request.body._id,
                                 email:request.body.email,
+                                username:request.body.username,
+                                name:request.body.name,
+                                bio:request.body.bio,
+                                age:request.body.age,
                                 password:request.body.password
                             })
     student.save()
@@ -64,6 +68,10 @@ module.exports.editStudent=(request,response,next)=>
         Student.updateOne({_id:request.params.id},{
                                 $set:{
                                     email:request.body.email,
+                                    username:request.body.username,
+                                    name:request.body.name,
+                                    bio:request.body.bio,
+                                    age:request.body.age,
                                 }
                             })
                 .then((data)=>{
@@ -80,6 +88,10 @@ module.exports.editStudent=(request,response,next)=>
     //     Student.updateOne({_id:request.body.id},{
     //                             $set:{
     //                                 email:request.body.email,
+                                        // username:request.body.username,
+                                        // name:request.body.name,
+                                        // bio:request.body.bio,
+                                        // age:Nrequest.body.age,
     //                                 password:request.body.password
     //                             }
     //                         })

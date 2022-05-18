@@ -13,6 +13,7 @@ const mongoose=require("mongoose");
 let eventSchema=mongoose.Schema({
     _id:Number,
     title:{type:String,required:true},
+    description:{type:String},
     event:{type:Date,default:Date.now},
     mainSpeaker:{type:mongoose.Types.ObjectId,ref:"speakers"},
     otherSpeakers:[{type:mongoose.Types.ObjectId,ref:"speakers"}],

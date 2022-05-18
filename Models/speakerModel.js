@@ -17,6 +17,9 @@ let speakerSchema=mongoose.Schema({
     // _id:mongoose.Types.ObjectId,
     email:String,
     username:String,
+    name:String,
+    bio:String,
+    age:Number,
     password:String,
     address:{
         city:String,

@@ -14,6 +14,10 @@ const mongoose=require("mongoose");
 let studentSchema=mongoose.Schema({
     _id:Number,
     email:String,
+    username:String,
+    name:String,
+    bio:String,
+    age:Number,
     password:String
 })
 

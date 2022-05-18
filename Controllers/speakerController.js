@@ -32,10 +32,14 @@ module.exports.createSpeaker=(request,response,next)=>
     //     throw new Error("Not Authorized...");    
     // if(Speaker.find({email:request.body.email})!==null)
     //     throw new Error("Email is doublicated please login");
+    console.log(request.body);
     let speaker=new Speaker({
         //_id:request.body.id,
         email:request.body.email,
         username:request.body.username,
+        name:request.body.name,
+        bio:request.body.bio,
+        age:request.body.age,
         password:request.body.password,
         address:request.body.address
     })
@@ -58,10 +62,13 @@ module.exports.editSpeaker=(request,response,next)=>
     // {
     //     if(request.body.password || request.body.username)
     //         throw new Error("Not Authorized...");
-        Speaker.updateOne({_id:request.params._id},{
+        Speaker.updateOne({_id:request.params.id},{
                     $set:{
                         email:request.body.email,
                         username:request.body.username,
+                        name:request.body.name,
+                        bio:request.body.bio,
+                        age:request.body.age,
                         // password:request.body.password,
                         address:request.body.address
                     }
@@ -81,6 +88,10 @@ module.exports.editSpeaker=(request,response,next)=>
     //         $set:{
     //             email:request.body.email,
     //             username:request.body.username,
+                    // username:request.body.username,
+                    // name:request.body.name,
+                    // bio:request.body.bio,
+                    // age:Nrequest.body.age,
     //             password:request.body.password,
     //             address:request.body.address
     //         }
@@ -104,9 +115,9 @@ module.exports.deleteSpeaker=(request,response,next)=>
     // if(request._id!==request.body.id)
     //     throw new Error("Not Authorized...");
 
-    Speaker.deleteOne({_id:request.params._id})
+    Speaker.deleteOne({_id:request.params.id})
            .then(data=>{
-               response.status(200).json({message:"Speaker Deleted"});
+               response.status(200).json({message:"Speaker Deleted", data});
            })
            .catch(error=>next(error))
 }

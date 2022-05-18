@@ -74,6 +74,7 @@ module.exports.createEvent=(request,response,next)=>
     let event=new Event({
         _id:request.body._id,
         title:request.body.title,
+        description:request.body.description,
         event:request.body.event,
         mainSpeaker:request.body.mainSpeaker,
         otherSpeakers:request.body.otherSpeakers,
@@ -112,31 +113,32 @@ module.exports.editEvent=(request,response,next)=>
     }
     else
     */
-    {
+    // {
 
-        Event.updateOne({_id:request.body.id},{
-            $set:{
-                title:request.body.title,
-                event:request.body.event,
-                mainSpeaker:request.body.mainSpeaker,
-                otherpeakers:request.body.otherpeakers,
-                students:request.body.students
-            }
-        })
+        Event.updateOne({_id:request.params.id},{
+                    $set:{
+                        title:request.body.title,
+                        description:request.body.description,
+                        event:request.body.event,
+                        mainSpeaker:request.body.mainSpeaker,
+                        otherpeakers:request.body.otherpeakers,
+                        students:request.body.students
+                        }
+                })
                 .then((data)=>{
                     if(data.matchedCount==0)
                         throw new Error("Event dosen't exists");
                     response.status(200).json({message:"Event Updated",data});
                 })
                 .catch(error=>next(error))
-    }
+    // }
 }
 
 module.exports.deleteEvent=(request,response,next)=>
 {
     // if(request.role!=="admin")
     //     throw new Error("Not Authorized...");
-    Event.deleteOne({_id:request.body.id})
+    Event.deleteOne({_id:request.params.id})
            .then(data=>{
                response.status(200).json({message:"Event Deleted"});
            })
