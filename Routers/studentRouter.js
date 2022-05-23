@@ -4,15 +4,16 @@ let router=express.Router();
 const controller=require("./../Controllers/studentController");
 const authMW=require("./../MiddleWares/authMiddleWare");
 
-router.route("/students/:id")
-.get(controller.getStudent)
-.put(controller.editStudent)
-.delete(controller.deleteStudent)
 // router.use(authMW);
 
+router.route("/students/:id")
+.get(authMW, controller.getStudent)
+.put(authMW, controller.editStudent)
+.delete(authMW, controller.deleteStudent)
+
 router.route("/students")
-.get(controller.getAllStudents)
-.post(controller.createStudent)
+.get(authMW, controller.getAllStudents)
+.post(authMW, controller.createStudent)
 // .put(controller.editStudent)
 // .delete(controller.deleteStudent)
 

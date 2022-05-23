@@ -68,8 +68,8 @@ module.exports.getEvent=(request,response,next)=>
 
 module.exports.createEvent=(request,response,next)=>
 {
-    // if(request.role!=="admin")
-    //     throw new Error("Not Authorized...");
+    if(request.role!=="admin")
+        throw new Error("Not Authorized...");
         
     let event=new Event({
         _id:request.body._id,
@@ -89,9 +89,9 @@ module.exports.createEvent=(request,response,next)=>
 
 module.exports.editEvent=(request,response,next)=>
 {
-    // if(request.role!=="admin")
-    //     if(request.role!=="speaker")
-    //         throw new Error("Not Authorized...");
+    if(request.role!=="admin")
+        // if(request.role!=="speaker")
+            throw new Error("Not Authorized...");
 
     // if(request.role==="speaker"&&(request.body.title||request.body.event||request.body.students))
     //     throw new Error("Not Authorized...");
@@ -136,8 +136,8 @@ module.exports.editEvent=(request,response,next)=>
 
 module.exports.deleteEvent=(request,response,next)=>
 {
-    // if(request.role!=="admin")
-    //     throw new Error("Not Authorized...");
+    if(request.role!=="admin")
+        throw new Error("Not Authorized...");
     Event.deleteOne({_id:request.params.id})
            .then(data=>{
                response.status(200).json({message:"Event Deleted"});
@@ -145,6 +145,3 @@ module.exports.deleteEvent=(request,response,next)=>
            .catch(error=>next(error))
 }
 
-
-
-// event.find({}).populate({path:"department"})

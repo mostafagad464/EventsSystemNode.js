@@ -8,12 +8,12 @@ const authMW=require("./../MiddleWares/authMiddleWare");
 
 router.route("/events/:id")
 .get(controller.getEvent)
-.put(controller.editEvent)
-.delete(controller.deleteEvent)
+.put(authMW, controller.editEvent)
+.delete(authMW, controller.deleteEvent)
 
 router.route("/events")
 .get(controller.getAllEvents)
-.post(controller.createEvent)
+.post(authMW, controller.createEvent)
 // .put(controller.editEvent)
 // .delete(controller.deleteEvent)
 

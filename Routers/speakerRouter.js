@@ -8,12 +8,12 @@ const authMW=require("./../MiddleWares/authMiddleWare");
 
 router.route("/speakers/:id")
 .get(controller.getSpeaker)
-.put(controller.editSpeaker)
-.delete(controller.deleteSpeaker)
+.put(authMW, controller.editSpeaker)
+.delete(authMW, controller.deleteSpeaker)
 
 router.route("/speakers")
 .get(controller.getAllSpeakers)
-.post(controller.createSpeaker)
+.post(authMW, controller.createSpeaker)
 // .put(controller.editSpeaker)
 // .delete(controller.deleteSpeaker)
 
